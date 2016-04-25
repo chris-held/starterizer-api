@@ -29,7 +29,13 @@ module.exports.policies = {
   // '*': true,
   '*': "hasToken",
   UserController: {
+    "*": ["hasToken", "isAdmin"],
     "create": true
+  },
+  RequestLogController: {
+    "*": ["hasToken", "isSuperadmin"],
+    "create": false,
+    "update": false
   },
   AuthController: {
     '*': true

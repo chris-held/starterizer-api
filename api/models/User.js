@@ -13,6 +13,10 @@ module.exports = {
       type: 'STRING',
       required: true
     },
+    roles: {
+      type: 'array',
+      enum: ['superadmin', 'admin']
+    },
     toJSON: function () {
       var obj = this.toObject();
       delete obj.password;

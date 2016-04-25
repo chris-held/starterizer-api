@@ -11,11 +11,17 @@ module.exports = {
   login: function (req, res) {
     auth.login(req, res);
   },
-  validate_token: function (req, res) {
-    auth.isvalidtoken(req, res);
-  },
   logout: function(req, res){
     req.logout();
     res.send(200);
+  },
+  me: function(req, res) {
+    auth.getUserFromToken(req, function(err, result){
+      if (err) {
+        return res.serverError(err);
+      } else {
+        return res.json(result);
+      }
+    });
   }
 };

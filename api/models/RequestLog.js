@@ -23,8 +23,11 @@ module.exports = {
 
   	requestBody: {
   		type: 'json'
-  	}
-		//TODO - need to capture response status and response time, and response body if possible
+  	},
+
+		responseTime: {
+			type: 'integer'
+		}
 
   }
 };

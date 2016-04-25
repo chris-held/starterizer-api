@@ -32,16 +32,18 @@ module.exports = {
       }
     })(req, res);
   },
-  isvalidtoken: function (req, res) {
+  getUserFromToken: function (req, cb) {
     if (req.headers.authorization) {
       jwt.verify(req.headers.authorization.replace('Bearer ', ''), sails.config.secret, function (err, decoded) {
-        if (err) return res.send({success: false});
+        if (err) {
+          return cb(err);
+        }
         if (decoded) {
-          return res.send({success: true, user: decoded[0]});
+          return cb(null, decoded[0]);
         }
       });
     } else {
-      return res.send({success: false});
+      return cb("No auth header found");
     }
   }
 };
